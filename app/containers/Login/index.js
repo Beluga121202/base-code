@@ -1,23 +1,20 @@
 import React from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useInjectSaga } from '../../utils/injectSaga';
 import reducer from './reducer';
 import * as action from './actions';
 import saga from './sagaLogin';
-import * as selectors from './selector';
 import { useInjectReducer } from '../../utils/injectReducer';
 import { REDUX_KEY } from './constant';
 const key = REDUX_KEY;
 
-const App = () => {
+const Login = () => {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
-  const LoginSelector = useSelector(selectors.selectUserLogin);
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  console.log(LoginSelector);
   const onFinish = values => {
     const temp = {
       username: values.username,
@@ -100,4 +97,4 @@ const App = () => {
     </>
   );
 };
-export default App;
+export default Login;
