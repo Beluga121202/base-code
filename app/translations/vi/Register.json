@@ -1,0 +1,19 @@
+{
+  "Register": "Đăng ký",
+  "FristName": "Họ",
+  "LastName": "Tên",
+  "Email": "Email",
+  "PhoneNumber": "Số điện thoại",
+  "DateOfBirth": "Ngày Sinh",
+  "Gender": "Giới tính",
+  "address": "Địa chỉ giao hàng",
+  "RePassword": "Nhập lại Mật khẩu",
+  "Username": "Tên đăng nhập",
+  "Password": "Mật khẩu",
+  "CreateAccount": "Tạo tài khoản",
+  "CreateAccountBenefit": "Với tài khoản Converse của bạn, bạn sẽ được hưởng ưu đãi miễn phí vận chuyển và trả lại, thanh toán nhanh hơn và trải nghiệm cá nhân hóa hơn. Bạn thậm chí có thể lưu các mục yêu thích của mình khi mua sắm và truy cập các bản phát hành mới và ưu đãi đặc biệt.",
+  "MemberBenefit": "Quyền lợi thành viên",
+  "FreeShiping": "Miễn phí vận chuyển trên toàn quốc",
+  "EasyReturn": "Dễ dàng đổi trả",
+  "MemberBenefitTitle": "Tạo một tài khoản để thanh toán siêu nhanh, lưu các mục yêu thích của bạn và nhận các đề xuất được cá nhân hóa trên Converse"
+}

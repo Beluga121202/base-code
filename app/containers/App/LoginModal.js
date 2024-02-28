@@ -2,10 +2,12 @@ import { Button, Form, Input } from 'antd';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { FormModalText, LoginButtonModal, ModalLogin } from './stylesApp';
 
 const LoginModal = ({ onClickOK, onClickCancel }) => {
   const history = useHistory();
+  const { t } = useTranslation();
   const handleCancel = () => {
     onClickCancel();
   };
@@ -19,17 +21,23 @@ const LoginModal = ({ onClickOK, onClickCancel }) => {
     history.push('./register');
     onClickCancel();
   };
+  const onClickReset = () => {
+    history.push('./reset-password');
+    onClickCancel();
+  };
   return (
     <>
-      <ModalLogin open title="SIGN IN" onCancel={handleCancel} footer={null}>
+      <ModalLogin
+        open
+        title={t('Login.Login')}
+        onCancel={handleCancel}
+        footer={null}
+      >
+        <FormModalText>{t('Login.LoginModalText')}</FormModalText>
         <FormModalText>
-          To get the most out of converse.ph, enter your account email address
-          and password below.
-        </FormModalText>
-        <FormModalText>
-          Don’t have an account yet?
+          {t('Login.NoAccount')}
           <Button type="link" onClick={onClickSignUp}>
-            Sign Up
+            {t('Login.Register')}
           </Button>
         </FormModalText>
         <Form
@@ -40,12 +48,12 @@ const LoginModal = ({ onClickOK, onClickCancel }) => {
           autoComplete="off"
         >
           <Form.Item
-            label="Username"
+            label={t('Login.Username')}
             name="username"
             rules={[
               {
                 required: true,
-                message: 'Please input your username!',
+                message: t('Login.ErrorMessageUser'),
               },
             ]}
           >
@@ -53,12 +61,12 @@ const LoginModal = ({ onClickOK, onClickCancel }) => {
           </Form.Item>
 
           <Form.Item
-            label="Password"
+            label={t('Login.Password')}
             name="password"
             rules={[
               {
                 required: true,
-                message: 'Please input your password!',
+                message: t('Login.ErrorMessagePass'),
               },
             ]}
           >
@@ -66,11 +74,13 @@ const LoginModal = ({ onClickOK, onClickCancel }) => {
           </Form.Item>
           <Form.Item>
             <LoginButtonModal type="primary" htmlType="submit">
-              Sign In
+              {t('Login.Login')}
             </LoginButtonModal>
           </Form.Item>
         </Form>
-        <Button type="link"> Forgot Your Password?</Button>
+        <Button type="link" onClick={onClickReset}>
+          {t('Login.ForgotPassWord')}
+        </Button>
       </ModalLogin>
     </>
   );

@@ -10,4 +10,6 @@ export const REDUX_KEY = {
   app: 'app',
   login: 'login',
   register: 'register',
+  prdocutManagement: 'prdocutManagement',
+  menPage: 'menPage',
 };

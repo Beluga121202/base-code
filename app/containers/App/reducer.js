@@ -20,6 +20,8 @@ const LoginReducer = (state = initialState, action) =>
           JSON.stringify({
             id: action.data.data.id,
             username: action.data.data.username,
+            is_staff: action.data.data.is_staff,
+            access_token: action.data.data.access,
           }),
         );
         break;

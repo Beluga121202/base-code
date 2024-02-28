@@ -3,6 +3,7 @@ import { Header } from 'antd/lib/layout/layout';
 import { Button, Menu, Modal } from 'antd';
 export const LogoImg = styled.img`
   width: 200px;
+  cursor: pointer;
 `;
 export const HeaderCustom = styled(Header)`
   &.ant-layout-header {
@@ -14,7 +15,6 @@ export const HeaderCustom = styled(Header)`
     display: flex;
     align-items: center;
     background-color: #fff;
-    margin-bottom: 28px;
   }
 `;
 export const MenuCustom = styled(Menu)`
@@ -59,7 +59,6 @@ export const SearchButton = styled(Button)`
 
 export const MarketingDiv = styled.div`
   display: flex;
-  margin-top: 20px;
   background-color: #fff;
   justify-content: center;
   align-items: center;
@@ -109,4 +108,16 @@ export const ModalLogin = styled(Modal)`
     font-size: 24px;
     font-weight: 700;
   }
+`;
+export const LogoImgDiv = styled.div`
+  height: 66px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #e5e5e5;
+`;
+export const LogoImgAdmin = styled.img`
+  width: 150px;
+  cursor: pointer;
 `;

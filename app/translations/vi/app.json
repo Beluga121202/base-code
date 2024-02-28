@@ -1,0 +1,12 @@
+{
+  "Username": "Tên đăng nhập",
+  "Password": "Mật khẩu",
+  "RePassword": "Nhập lại Mật khẩu",
+  "FristName": "Họ",
+  "LastName": "Tên",
+  "Email": "Email",
+  "PhoneNumber": "Số điện thoại",
+  "DateOfBirth": "Ngày Sinh",
+  "Gender": "Giới tính",
+  "address": "Địa chỉ giao hàng"
+}

@@ -1,4 +1,4 @@
-import { Button, DatePicker, Form, Input, message, Select } from 'antd';
+import { DatePicker, Flex, Form, Input, message, Select } from 'antd';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
@@ -16,7 +16,17 @@ import {
   BannerImg,
   BannerText,
   BannerTitle,
+  MemberBenefit,
+  MemberBenefitDes,
+  MemberBenefitItem,
+  MemberBenefitItemImg,
+  MemberBenefitItemText,
+  MemberBenefitList,
+  MemberBenefitTitle,
+  RegisterButton,
 } from './stylesRegister';
+import FreeShipping from '../../images/fast-delivery.png';
+import ProductReturn from '../../images/return-box-cycle-svgrepo-com.svg';
 import Banner from '../../images/signup_banner.jpg';
 const key = REDUX_KEY.register;
 const Registration = () => {
@@ -55,215 +65,232 @@ const Registration = () => {
       <BannerDiv>
         <BannerImg src={Banner} />
         <BannerTitle>
-          <BannerText>Create An Account</BannerText>
-          <BannerDes>
-            With your Converse account, enjoy free shipping and returns, a
-            faster checkout, and a more personalized experience. You can even
-            save your favorites as you shop, and access new releases and special
-            offers.
-          </BannerDes>
+          <BannerText>{t('Register.CreateAccount')}</BannerText>
+          <BannerDes>{t('Register.CreateAccountBenefit')}</BannerDes>
         </BannerTitle>
       </BannerDiv>
-      <Form
-        name="register"
-        labelCol={{
-          span: 8,
-        }}
-        wrapperCol={{
-          span: 16,
-        }}
-        style={{
-          maxWidth: 600,
-        }}
-        initialValues={{
-          remember: true,
-        }}
-        onFinish={onFinish}
-        autoComplete="off"
-      >
-        <Form.Item
-          label={t('Login.Username')}
-          name="username"
-          rules={[
-            {
-              required: true,
-              message: 'Vui lòng nhập tên đăng nhập',
-            },
-            {
-              type: 'string',
-              min: 6,
-              message: 'Vui lòng nhập ít nhất 6 ký tự ',
-            },
-          ]}
+      <Flex justify="space-around" style={{ width: '80%' }}>
+        <Form
+          name="register"
+          layout="vertical"
+          labelCol={{
+            span: 8,
+          }}
+          wrapperCol={{
+            span: 20,
+          }}
+          style={{
+            maxWidth: '500px',
+            flex: '1',
+          }}
+          initialValues={{
+            remember: true,
+          }}
+          onFinish={onFinish}
+          autoComplete="off"
         >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label={t('Login.FristName')}
-          name="first_name"
-          rules={[
-            {
-              required: true,
-              message: 'Vui lòng nhập họ!',
-            },
-            {
-              type: 'string',
-              message:
-                'Vui lòng không nhập không nhập họ dưới dạng chữ số hoặc ký tự đặc biệt ',
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label={t('Login.LastName')}
-          name="last_name"
-          rules={[
-            {
-              required: true,
-              message: 'Vui lòng nhập tên!',
-            },
-            {
-              type: 'string',
-              message:
-                'Vui lòng không nhập không nhập tên dưới dạng chữ số hoặc ký tự đặc biệt ',
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label={t('Login.Email')}
-          name="email"
-          rules={[
-            {
-              required: true,
-              message: 'Vui lòng nhập Email',
-            },
-            {
-              type: 'email',
-              message: 'Vui lòng nhập email đúng định dạng',
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label={t('Login.PhoneNumber')}
-          name="phone_number"
-          rules={[
-            {
-              required: true,
-              message: 'Vui lòng nhập số điện thoại',
-            },
-            {
-              type: 'string',
-              pattern: '(84|0[3|5|7|8|9])+([0-9]{8})\\b',
-              message: 'Số điện thoại không đúng định dạng',
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label={t('Login.address')}
-          name="address"
-          rules={[
-            {
-              required: true,
-              message: 'Please input your address!',
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label={t('Login.DateOfBirth')}
-          name="birthday"
-          rules={[
-            {
-              required: true,
-              message: 'Please input your DateOfBirth!',
-            },
-          ]}
-        >
-          <DatePicker onChange={onChangeBirhtDay} format={dateFormat} />
-        </Form.Item>
-        <Form.Item
-          label={t('Login.Gender')}
-          name="gender"
-          rules={[
-            {
-              required: true,
-              message: 'Please input your Gender!',
-            },
-          ]}
-        >
-          <Select
-            style={{
-              width: 150,
-            }}
-            options={[
+          <Form.Item
+            label={t('Register.Username')}
+            name="username"
+            rules={[
               {
-                label: 'Nam',
-                value: 0,
+                required: true,
+                message: 'Vui lòng nhập tên đăng nhập',
               },
               {
-                label: 'Nữ',
-                value: 1,
-              },
-              {
-                label: 'Không xác định',
-                value: 2,
+                type: 'string',
+                min: 6,
+                message: 'Vui lòng nhập ít nhất 6 ký tự ',
               },
             ]}
-          />
-        </Form.Item>
-        <Form.Item
-          label={t('Login.Password')}
-          name="password"
-          rules={[
-            {
-              required: true,
-              message: 'Please input your password!',
-            },
-          ]}
-        >
-          <Input.Password />
-        </Form.Item>
-        <Form.Item
-          label={t('Login.RePassword')}
-          name="repassword"
-          rules={[
-            {
-              required: true,
-              message: 'Please input your Repassword!',
-            },
-            ({ getFieldValue }) => ({
-              validator(_, value) {
-                if (!value || getFieldValue('password') === value) {
-                  return Promise.resolve();
-                }
-                return Promise.reject(
-                  new Error('The new password that you entered do not match!'),
-                );
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label={t('Register.FristName')}
+            name="first_name"
+            rules={[
+              {
+                required: true,
+                message: 'Vui lòng nhập họ!',
               },
-            }),
-          ]}
-        >
-          <Input.Password />
-        </Form.Item>
-        <Form.Item
-          wrapperCol={{
-            offset: 8,
-            span: 16,
-          }}
-        >
-          <Button type="primary" htmlType="submit" loading={loading}>
-            Submit
-          </Button>
-        </Form.Item>
-      </Form>
+              {
+                type: 'string',
+                message:
+                  'Vui lòng không nhập không nhập họ dưới dạng chữ số hoặc ký tự đặc biệt ',
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label={t('Register.LastName')}
+            name="last_name"
+            rules={[
+              {
+                required: true,
+                message: 'Vui lòng nhập tên!',
+              },
+              {
+                type: 'string',
+                message:
+                  'Vui lòng không nhập không nhập tên dưới dạng chữ số hoặc ký tự đặc biệt ',
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label={t('Register.Email')}
+            name="email"
+            rules={[
+              {
+                required: true,
+                message: 'Vui lòng nhập Email',
+              },
+              {
+                type: 'email',
+                message: 'Vui lòng nhập email đúng định dạng',
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label={t('Register.PhoneNumber')}
+            name="phone_number"
+            rules={[
+              {
+                required: true,
+                message: 'Vui lòng nhập số điện thoại',
+              },
+              {
+                type: 'string',
+                pattern: '(84|0[3|5|7|8|9])+([0-9]{8})\\b',
+                message: 'Số điện thoại không đúng định dạng',
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label={t('Register.address')}
+            name="address"
+            rules={[
+              {
+                required: true,
+                message: 'Vui lòng nhập địa chỉ',
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label={t('Register.DateOfBirth')}
+            name="birthday"
+            rules={[
+              {
+                required: true,
+                message: 'Vui lòng chọn ngày sinh',
+              },
+            ]}
+          >
+            <DatePicker onChange={onChangeBirhtDay} format={dateFormat} />
+          </Form.Item>
+          <Form.Item
+            label={t('Register.Gender')}
+            name="gender"
+            rules={[
+              {
+                required: true,
+                message: 'Vui lòng chọn giới tính',
+              },
+            ]}
+          >
+            <Select
+              style={{
+                width: 150,
+              }}
+              options={[
+                {
+                  label: 'Nam',
+                  value: 0,
+                },
+                {
+                  label: 'Nữ',
+                  value: 1,
+                },
+                {
+                  label: 'Không xác định',
+                  value: 2,
+                },
+              ]}
+            />
+          </Form.Item>
+          <Form.Item
+            label={t('Register.Password')}
+            name="password"
+            rules={[
+              {
+                required: true,
+                message: 'Vui lòng nhập mật khẩu',
+              },
+              {
+                pattern:
+                  '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$',
+                message: 'Mật khẩu không đúng định dạng',
+              },
+            ]}
+          >
+            <Input.Password />
+          </Form.Item>
+          <Form.Item
+            label={t('Register.RePassword')}
+            name="repassword"
+            rules={[
+              {
+                required: true,
+                message: 'Vui lòng nhập lại mật khẩu',
+              },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || getFieldValue('password') === value) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(new Error('Mật khẩu không trùng khớp'));
+                },
+              }),
+            ]}
+          >
+            <Input.Password />
+          </Form.Item>
+          <Form.Item>
+            <RegisterButton type="primary" htmlType="submit" loading={loading}>
+              {t('Register.Register')}
+            </RegisterButton>
+          </Form.Item>
+        </Form>
+        <MemberBenefit>
+          <MemberBenefitTitle>{t('Register.MemberBenefit')}</MemberBenefitTitle>
+          <MemberBenefitDes>
+            {t('Register.MemberBenefitTitle')}
+          </MemberBenefitDes>
+          <MemberBenefitList>
+            <MemberBenefitItem>
+              <MemberBenefitItemImg src={FreeShipping} />
+              <MemberBenefitItemText>
+                {t('Register.FreeShiping')}
+              </MemberBenefitItemText>
+            </MemberBenefitItem>
+            <MemberBenefitItem>
+              <MemberBenefitItemImg src={ProductReturn} />
+              <MemberBenefitItemText>
+                {t('Register.EasyReturn')}
+              </MemberBenefitItemText>
+            </MemberBenefitItem>
+          </MemberBenefitList>
+        </MemberBenefit>
+      </Flex>
     </>
   );
 };

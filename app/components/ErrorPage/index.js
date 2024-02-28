@@ -12,7 +12,8 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-const ErrorPage = ({ code }) => {
+// eslint-disable-next-line react/prop-types
+const ErrorPage = ({ code, message }) => {
   const history = useHistory();
 
   const [status, setStatus] = useState('500');
@@ -28,7 +29,7 @@ const ErrorPage = ({ code }) => {
         setSubTitle('Xin lỗi, trang bạn đã truy cập không tồn tại.');
         break;
       case '500':
-        setSubTitle('Xin lỗi, có lỗi xảy ra.');
+        setSubTitle(message);
         break;
       default:
         setSubTitle('Xin lỗi, có lỗi xảy ra.');
@@ -53,6 +54,7 @@ const ErrorPage = ({ code }) => {
 };
 ErrorPage.propTypes = {
   code: PropTypes.number,
+  message: PropTypes.string,
 };
 
 export default ErrorPage;

@@ -1,12 +1,11 @@
 {
-  "Username": "Tên đăng nhập",
+  "Username": "Tên đăng nhập hoặc email",
   "Password": "Mật khẩu",
-  "RePassword": "Nhập lại Mật khẩu",
-  "FristName": "Họ",
-  "LastName": "Tên",
-  "Email": "Email",
-  "PhoneNumber": "Số điện thoại",
-  "DateOfBirth": "Ngày Sinh",
-  "Gender": "Giới tính",
-  "address": "Địa chỉ giao hàng"
+  "Login": "Đăng nhập",
+  "LoginModalText": "Để tận dụng tối đa ưu đãi đến từ thành viên, hãy nhập tài khoản và mật khẩu của bạn bên dưới.",
+  "NoAccount": "Bạn chưa có tài khoản ?",
+  "Register": "Đăng ký",
+  "ErrorMessageUser": "Vui lòng nhập tài khoản",
+  "ErrorMessagePass": "Vui lòng nhập mật khẩu",
+  "ForgotPassWord": "Quên mật khẩu?"
 }
