@@ -1,7 +1,7 @@
 import { DatePicker, Flex, Form, Input, message, Select } from 'antd';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 import { useInjectReducer } from '../../utils/injectReducer';
@@ -9,6 +9,7 @@ import reducer from './reducerRegister';
 import { useInjectSaga } from '../../utils/injectSaga';
 import saga from './sagaRegister';
 import * as actions from './actionsRegister';
+import * as selector from './selectorRegister';
 import { REDUX_KEY } from '../../utils/constants';
 import {
   BannerDes,
@@ -35,7 +36,11 @@ const Registration = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const history = useHistory();
-  const [loading, setLoading] = useState(false);
+  const isLoading = useSelector(selector.selectLoading());
+  const [loading, setLoading] = useState(isLoading);
+  useEffect(() => {
+    setLoading(isLoading);
+  }, [isLoading]);
   const onFinish = values => {
     setLoading(true);
     const temp = {

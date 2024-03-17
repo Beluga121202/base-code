@@ -15,7 +15,7 @@ export const initialState = {
   Inventory: {},
 };
 /* eslint-disable default-case, no-param-reassign */
-export const takeListReducer = (state = initialState, action) =>
+export const ProductManagementReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
       case TAKELISTIVENTORY:
@@ -45,4 +45,4 @@ export const takeListReducer = (state = initialState, action) =>
         break;
     }
   });
-export default takeListReducer;
+export default ProductManagementReducer;

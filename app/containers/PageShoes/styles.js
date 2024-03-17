@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Card } from 'antd';
+import { Button, Card, Col } from 'antd';
 
 export const BannerImg = styled.img`
   width: 100%;
@@ -34,5 +34,22 @@ export const CardCustom = styled(Card)`
   .ant-card-meta-description {
     color: #d0021b;
     font-weight: 600;
+  }
+`;
+export const ProductItem = styled(Col)`
+  padding-bottom: 16px;
+`;
+
+export const CostPrice = styled.del`
+  display: block;
+  color: #757575;
+`;
+
+export const CheckOutButton = styled(Button)`
+  &.ant-btn {
+    margin-top: 20px;
+    background: black;
+    width: 100%;
+    height: 40px;
   }
 `;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Flex, message, Space } from 'antd';
+import { Button, Flex, message, Popconfirm, Space } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useInjectSaga } from '../../../utils/injectSaga';
@@ -12,15 +12,16 @@ import { EditButtonImg, ProductImg } from './styles';
 import EditButton from '../../../images/edit.svg';
 import DeleteButton from '../../../images/delete.jpg';
 import TableCustom from '../../../components/Table';
-import AddProductModal from './AddProductModal';
+import AddandEditProductModal from './AddandEditProductModal';
 const key = REDUX_KEY.prdocutManagement;
 
 // eslint-disable-next-line react/prop-types
-const ProductManagement = ({ token }) => {
+const ProductManagement = ({ token, search }) => {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
   const [page, setPage] = useState(1);
   const [dataSource, setDataSource] = useState([]);
+  const [dataSearch, setDataSearch] = useState([]);
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const [openAdd, setOpenAdd] = useState(false);
@@ -31,41 +32,24 @@ const ProductManagement = ({ token }) => {
     dispatch(
       actions.takeListIventory(temp, res => {
         setDataSource(res.data);
+        setDataSearch(res.data);
       }),
     );
   }, []);
+  useEffect(() => {
+    const FilterdData = dataSearch.filter(item =>
+      item.product_name.includes(search),
+    );
+    setDataSource(FilterdData);
+  }, [search]);
   const handleCancel = () => {
     setOpenAdd(false);
     setOpenEdit(false);
   };
   const handleAdd = data => {
-    const form = new FormData();
-    // Decode base64 to create a File
-    const decodedImgData = atob(data.img.file.thumbUrl.split(',')[1]);
-    const byteArray = new Uint8Array(decodedImgData.length);
-    decodedImgData.split('').forEach((char, i) => {
-      byteArray[i] = char.charCodeAt(0);
-    });
-    const imageType = data.img.file.thumbUrl.includes('image/png')
-      ? 'image/png'
-      : 'image/jpeg';
-    const file = new File([byteArray], `image.${imageType.split('/')[1]}`, {
-      type: imageType,
-    });
-    form.append('img', file);
-    const fieldsToAppend = [
-      'product_type',
-      'product_name',
-      'product_id',
-      'price',
-      'discount',
-      'place',
-      'quantity',
-      'product_line',
-    ];
-    fieldsToAppend.forEach(field => form.append(field, data[field]));
+    const temp = { ...data, img: data.img[0].data_url };
     dispatch(
-      actions.addIventory(form, () => {
+      actions.addIventory(temp, () => {
         message.success('Thêm thành công', 1, () => {
           setOpenAdd(false);
           dispatch(
@@ -146,9 +130,22 @@ const ProductManagement = ({ token }) => {
       dataIndex: 'quantity',
     },
     {
-      title: 'Giá',
+      title: 'Giá Bán',
       key: 'price',
       dataIndex: 'price',
+      render: value => (
+        <span>
+          {value.toLocaleString('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+          })}
+        </span>
+      ),
+    },
+    {
+      title: 'Giá Nhập',
+      key: 'cost_price',
+      dataIndex: 'cost_price',
       render: value => (
         <span>
           {value.toLocaleString('vi-VN', {
@@ -171,12 +168,16 @@ const ProductManagement = ({ token }) => {
             alt=""
           />
           {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
-          <img
-            style={{ cursor: 'pointer' }}
-            src={DeleteButton}
-            onClick={() => handleDelete(record)}
-            alt=""
-          />
+          <Popconfirm
+            placement="topLeft"
+            title="Xoá sản phẩm"
+            description="Bạn có muốn xoá sản phẩm ?"
+            onConfirm={() => handleDelete(record)}
+            okText="Đồng ý"
+            cancelText="Huỷ bỏ"
+          >
+            <img style={{ cursor: 'pointer' }} src={DeleteButton} alt="" />
+          </Popconfirm>
         </Space>
       ),
     },
@@ -185,7 +186,7 @@ const ProductManagement = ({ token }) => {
     <>
       <Flex justify="flex-end">
         <Button type="primary" onClick={() => setOpenAdd(true)}>
-          {t('ProductManagement.AddProduct')}
+          {t('Admin.AddProduct')}
         </Button>
       </Flex>
       <TableCustom
@@ -198,10 +199,13 @@ const ProductManagement = ({ token }) => {
         }}
       />
       {openAdd && (
-        <AddProductModal onClickCancel={handleCancel} onClickOK={handleAdd} />
+        <AddandEditProductModal
+          onClickCancel={handleCancel}
+          onClickOK={handleAdd}
+        />
       )}
       {openEdit && (
-        <AddProductModal
+        <AddandEditProductModal
           onClickCancel={handleCancel}
           onClickOK={handleEdit}
           productEdit={productEdit}

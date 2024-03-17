@@ -1,9 +1,16 @@
 import produce from 'immer';
-import { LOG_OUT, LOGIN, LOGIN_ERROR, LOGIN_SUCCESS } from './constants';
+import {
+  DELETE_ITEM,
+  LOG_OUT,
+  LOGIN,
+  LOGIN_ERROR,
+  LOGIN_SUCCESS,
+} from './constants';
 
 export const initialState = {
   isLoading: false,
   userAccount: JSON.parse(localStorage.getItem('user')) || [],
+  cart: JSON.parse(localStorage.getItem('cart')),
 };
 /* eslint-disable default-case, no-param-reassign */
 const LoginReducer = (state = initialState, action) =>
@@ -30,6 +37,16 @@ const LoginReducer = (state = initialState, action) =>
       case LOG_OUT:
         draft.userAccount = [];
         localStorage.setItem('user', JSON.stringify([]));
+        break;
+      case DELETE_ITEM: {
+        const storedCart = JSON.parse(localStorage.getItem('cart'));
+        const updatedCart = storedCart.filter(
+          item => item.product_id !== action.body.product_id,
+        );
+        draft.cart = updatedCart;
+        localStorage.setItem('cart', JSON.stringify(updatedCart));
+        break;
+      }
     }
   });
 

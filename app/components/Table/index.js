@@ -10,7 +10,7 @@ const TableCustom = ({ data, columns, isLoading, pagination }) => (
     loading={isLoading}
     pagination={pagination}
     scroll={{
-      y: 300,
+      y: 400,
     }}
   />
 );

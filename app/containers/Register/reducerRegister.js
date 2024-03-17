@@ -20,6 +20,7 @@ const RegisterReducer = (state = initialState, action) =>
         break;
       case REGISTER_ERROR:
         draft.errorMessage = action.error;
+        draft.isLoading = false;
         // console.log(action);
         break;
     }

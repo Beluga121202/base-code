@@ -1,28 +1,38 @@
 import {
-  TAKELIST_MENPAGE,
-  TAKELIST_MENPAGE_SUCCESS,
-  TAKELIST_MENPAGE_ERROR,
+  TAKELIST_PAGE,
+  TAKELIST_PAGE_SUCCESS,
+  TAKELIST_PAGE_ERROR,
   FILTER_PRODUCT,
   FILTER_PRODUCT__SUCCESS,
   FILTER_PRODUCT__ERROR,
+  BANNER_PAGE,
+  BANNER_PAGE_SUCCESS,
+  TAKELIST_TRENDING_PAGE,
 } from './constans';
 
-export function takeListMenPage(body, callback) {
+export function takeListPage(body, callback) {
   return {
-    type: TAKELIST_MENPAGE,
+    type: TAKELIST_PAGE,
+    body,
+    callback,
+  };
+}
+export function takeListTrendingPage(body, callback) {
+  return {
+    type: TAKELIST_TRENDING_PAGE,
     body,
     callback,
   };
 }
 export function takeListSuccess(data) {
   return {
-    type: TAKELIST_MENPAGE_SUCCESS,
+    type: TAKELIST_PAGE_SUCCESS,
     data,
   };
 }
 export function takeListError(data) {
   return {
-    type: TAKELIST_MENPAGE_ERROR,
+    type: TAKELIST_PAGE_ERROR,
     data,
   };
 }
@@ -43,6 +53,21 @@ export function filterProdcutSuccess(data) {
 export function filterProdcutError(data) {
   return {
     type: FILTER_PRODUCT__ERROR,
+    data,
+  };
+}
+
+export function takeBanner(body, callback) {
+  return {
+    type: BANNER_PAGE,
+    body,
+    callback,
+  };
+}
+
+export function takeBannerSuccess(data) {
+  return {
+    type: BANNER_PAGE_SUCCESS,
     data,
   };
 }

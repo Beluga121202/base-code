@@ -14,6 +14,10 @@ export const TableTest = styled(Table)`
     font-weight: 600;
     background-color: #000;
     color: #fff;
+    text-align: center;
+  }
+  .ant-table-row .ant-table-cell {
+    text-align: center;
   }
   .ant-table-pagination {
     margin: 16px 6px;

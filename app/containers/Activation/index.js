@@ -34,7 +34,7 @@ export default function Activation() {
           'Kích hoạt thành công , bây giờ bạn có thể sử dụng tài khoản',
           '2',
           () => {
-            history.push('/login');
+            history.push('/');
           },
         );
       }),
@@ -42,7 +42,7 @@ export default function Activation() {
   }, []);
   return (
     <>
-      {uid.length === 2 && token.length === 39 ? (
+      {token.length === 39 ? (
         <Result
           title="Yêu cầu của bạn đang được thực hiện"
           extra={

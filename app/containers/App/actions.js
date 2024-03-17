@@ -1,4 +1,10 @@
-import { LOG_OUT, LOGIN, LOGIN_ERROR, LOGIN_SUCCESS } from './constants';
+import {
+  DELETE_ITEM,
+  LOG_OUT,
+  LOGIN,
+  LOGIN_ERROR,
+  LOGIN_SUCCESS,
+} from './constants';
 
 export function Login(body, callback) {
   return {
@@ -24,5 +30,11 @@ export function LogOut(data) {
   return {
     type: LOG_OUT,
     data,
+  };
+}
+export function DelItemCart(body) {
+  return {
+    type: DELETE_ITEM,
+    body,
   };
 }

@@ -1,13 +1,14 @@
 import { Route, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Dropdown, Flex, Layout, Menu, theme } from 'antd';
+import { Dropdown, Flex, Layout, Menu } from 'antd';
 import {
   UploadOutlined,
   UserOutlined,
   VideoCameraOutlined,
 } from '@ant-design/icons';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
+import Search from 'antd/es/input/Search';
 import * as selector from '../selectors';
 import * as actions from '../actions';
 import {
@@ -18,11 +19,21 @@ import {
 } from '../stylesApp';
 import Logo from '../../../images/logo_convense.svg';
 import ErrorPage from '../../../components/ErrorPage';
-const { Content, Sider, Header } = Layout;
-export default function ContainerAdmin({ component: Component }) {
+import { REDUX_KEY } from '../../../utils/constants';
+import { useInjectReducer } from '../../../utils/injectReducer';
+import reducer from '../reducer';
+import { useInjectSaga } from '../../../utils/injectSaga';
+import saga from '../saga';
+const key = REDUX_KEY.login;
+const { Content, Sider } = Layout;
+// eslint-disable-next-line react/prop-types
+export default function ContainerAdmin({ component: Component, placeholder }) {
   const history = useHistory();
   const infoUser = useSelector(selector.selectUserLogin());
   const dispatch = useDispatch();
+  useInjectReducer({ key, reducer });
+  useInjectSaga({ key, saga });
+  const [search, setSearch] = useState('');
   const items = ['Info', 'Log Out'].map((name, index) => ({
     key: String(index + 1),
     label: `${name}`,
@@ -34,26 +45,18 @@ export default function ContainerAdmin({ component: Component }) {
   };
   const HandleLogOut = () => {
     dispatch(actions.LogOut());
-    history.push('/register');
+    history.push('/');
   };
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
+  const handleChange = e => {
+    const { value: inputValue } = e.target;
+    setSearch(inputValue);
+  };
   return (
     <Route
       render={() =>
         infoUser.is_staff ? (
-          <Layout>
-            <Sider
-              breakpoint="lg"
-              collapsedWidth="0"
-              onBreakpoint={broken => {
-                console.log(broken);
-              }}
-              onCollapse={(collapsed, type) => {
-                console.log(collapsed, type);
-              }}
-            >
+          <Layout style={{ height: '100vh' }}>
+            <Sider>
               <LogoImgDiv>
                 <LogoImgAdmin src={Logo} onClick={() => history.push('/')} />
               </LogoImgDiv>
@@ -83,13 +86,18 @@ export default function ContainerAdmin({ component: Component }) {
             <Layout>
               <Flex
                 justify="space-between"
+                align="center"
                 style={{ borderBottom: '1px solid #e5e5e5' }}
               >
-                <Header
+                <Search
+                  placeholder={placeholder}
+                  enterButton
                   style={{
-                    padding: 0,
-                    background: colorBgContainer,
+                    width: '30%',
+                    marginLeft: '24px',
                   }}
+                  size="large"
+                  onChange={handleChange}
                 />
                 <HeaderRight>
                   <Dropdown
@@ -115,7 +123,7 @@ export default function ContainerAdmin({ component: Component }) {
                   backgroundColor: '#fff',
                 }}
               >
-                <Component token={infoUser.access_token} />
+                <Component token={infoUser.access_token} search={search} />
               </Content>
             </Layout>
           </Layout>

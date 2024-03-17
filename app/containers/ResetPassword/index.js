@@ -7,7 +7,7 @@ import { useInjectReducer } from '../../utils/injectReducer';
 import reducer from './reducer';
 import { useInjectSaga } from '../../utils/injectSaga';
 import saga from './saga';
-import { REDUX_KEY } from './constant';
+import { REDUX_KEY } from '../../utils/constants';
 import * as actions from './actions';
 import { ResetPassWordForm } from './ResetPassWordForm';
 import {
@@ -16,7 +16,7 @@ import {
   ResetPassWordNote,
   ResetPassWordTitle,
 } from './styleResetPassword';
-const key = REDUX_KEY;
+const key = REDUX_KEY.resetPassword;
 export default function ResetPassword() {
   const location = useLocation();
   useInjectReducer({ key, reducer });
@@ -27,16 +27,24 @@ export default function ResetPassword() {
   const searchParams = new URLSearchParams(location.search);
   const uid = searchParams.get('uid');
   const token = searchParams.get('token');
+  // const isLoading = useSelector(selector.selectLoading());
   const [loading, setLoading] = useState(false);
+  // useEffect(() => {
+  //   setLoading(isLoading);
+  // }, [isLoading]);
 
   const onFinish = values => {
     setLoading(true);
     dispatch(
       actions.ReceiveEmail(values, () => {
         setLoading(false);
-        message.success('Success', 2, () => {
-          history.push('/login');
-        });
+        message.success(
+          'Vui lòng nhấp vào đường dẫn trong email để đặt lại mật khẩu',
+          2,
+          () => {
+            history.push('/');
+          },
+        );
       }),
     );
   };
@@ -51,7 +59,7 @@ export default function ResetPassword() {
       actions.ResetPassword(temp, () => {
         setLoading(false);
         message.success('Success', 2, () => {
-          history.push('/login');
+          history.push('/');
         });
       }),
     );
@@ -101,7 +109,11 @@ export default function ResetPassword() {
               </Form.Item>
 
               <Form.Item>
-                <ResetPassWordButton type="primary" htmlType="submit">
+                <ResetPassWordButton
+                  type="primary"
+                  htmlType="submit"
+                  loading={loading}
+                >
                   {t('ResetPassWord.ResetPassWord')}
                 </ResetPassWordButton>
               </Form.Item>

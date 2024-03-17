@@ -1,27 +1,33 @@
 import produce from 'immer';
 import {
+  BANNER_PAGE,
+  BANNER_PAGE_SUCCESS,
   FILTER_PRODUCT,
   FILTER_PRODUCT__ERROR,
   FILTER_PRODUCT__SUCCESS,
-  TAKELIST_MENPAGE,
-  TAKELIST_MENPAGE_ERROR,
-  TAKELIST_MENPAGE_SUCCESS,
+  TAKELIST_PAGE,
+  TAKELIST_PAGE_ERROR,
+  TAKELIST_PAGE_SUCCESS,
+  TAKELIST_TRENDING_PAGE,
 } from './constans';
 
 export const initialState = {
   isLoading: false,
 };
 /* eslint-disable default-case, no-param-reassign */
-const MenPageReducer = (state = initialState, action) =>
+const PageReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case TAKELIST_MENPAGE:
+      case TAKELIST_PAGE:
         draft.isLoading = true;
         break;
-      case TAKELIST_MENPAGE_SUCCESS:
+      case TAKELIST_TRENDING_PAGE:
+        draft.isLoading = true;
+        break;
+      case TAKELIST_PAGE_SUCCESS:
         draft.isLoading = false;
         break;
-      case TAKELIST_MENPAGE_ERROR:
+      case TAKELIST_PAGE_ERROR:
         draft.errorMessage = action.error;
         // console.log(action);
         break;
@@ -35,7 +41,13 @@ const MenPageReducer = (state = initialState, action) =>
         draft.errorMessage = action.error;
         // console.log(action);
         break;
+      case BANNER_PAGE:
+        draft.isLoading = true;
+        break;
+      case BANNER_PAGE_SUCCESS:
+        draft.isLoading = false;
+        break;
     }
   });
 
-export default MenPageReducer;
+export default PageReducer;

@@ -18,11 +18,13 @@ const LoginModal = ({ onClickOK, onClickCancel }) => {
     console.log('Failed:', errorInfo);
   };
   const onClickSignUp = () => {
-    history.push('./register');
+    history.push('/register');
+    localStorage.setItem('tab', 5);
     onClickCancel();
   };
   const onClickReset = () => {
-    history.push('./reset-password');
+    history.push('/reset-password');
+    localStorage.setItem('tab', 5);
     onClickCancel();
   };
   return (

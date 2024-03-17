@@ -1,0 +1,6 @@
+export const TAKE_ITEM = 'TAKE_ITEM';
+
+export const INCRESE_QUANTITY = 'INCRESE_QUANTITY';
+export const DECRESE_QUANTITY = 'DECRESE_QUANTITY';
+
+export const DELETE_ITEM = 'DELETE_ITEM';

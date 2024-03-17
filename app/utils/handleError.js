@@ -3,11 +3,11 @@ import { message } from 'antd';
 export const handleError = errorBody => {
   const { data } = errorBody;
   const code = errorBody.status;
-
+  console.log(data);
   switch (code) {
     case 400:
-      if (data.username || data.email) {
-        message.error(data.username ? data.username : data.email, '1');
+      if (data.username || data.email || data.phone_number) {
+        message.error(data.username || data.email || data.phone_number, '1');
       } else if (data.error) {
         message.error(data.error, '1');
       } else {

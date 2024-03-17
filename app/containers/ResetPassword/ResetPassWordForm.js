@@ -19,7 +19,7 @@ export function ResetPassWordForm({ token, uid, onClickChange, isLoading }) {
   const onFinishFailed = () => {};
   return (
     <>
-      {uid.length !== 2 || token.length !== 39 ? (
+      {token.length !== 39 ? (
         <ErrorPage
           code="500"
           message="Link của bạn bị lỗi , vui lòng kiểm tra lại đường link"

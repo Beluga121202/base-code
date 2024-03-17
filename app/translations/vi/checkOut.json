@@ -1,0 +1,11 @@
+{
+  "FullName": "Họ và Tên",
+  "Email": "Email",
+  "Phone": "Số điện thoại",
+  "ShippingAddress": "Địa chỉ giao hàng",
+  "PaymentMethod": "Phương thức thanh toán",
+  "CheckOut": "Thanh toán",
+  "TempoaryPrice": "Tạm tính",
+  "FeeShipping": "Phí vận chuyển",
+  "Total": "Tổng cộng"
+}

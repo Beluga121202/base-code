@@ -49,7 +49,7 @@ export const LoginButton = styled(Button)`
 export const SearchButton = styled(Button)`
   &.ant-btn {
     height: 100%;
-    width: 60%;
+    width: 50%;
     font-size: 16px;
     font-weight: 700;
     background: black;
@@ -120,4 +120,48 @@ export const LogoImgDiv = styled.div`
 export const LogoImgAdmin = styled.img`
   width: 150px;
   cursor: pointer;
+`;
+
+export const CartItemImg = styled.img`
+  width: 80px;
+  height: 80px;
+  margin-right: 30px;
+`;
+export const CartItemInfo = styled.div`
+  width: 130px;
+`;
+export const CartItemName = styled.div`
+  font-weight: bold;
+`;
+export const CartItemColor = styled.div`
+  font-size: 14px;
+`;
+export const CartItemText = styled.span`
+  color: #757575;
+  font-weight: 500;
+`;
+export const CartItemQty = styled.div``;
+export const CartItemPrice = styled.div`
+  color: #d0021b;
+  font-weight: 500;
+`;
+export const CartItemTotal = styled.div`
+  color: #d0021b;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+`;
+export const CartItemTotalText = styled.div`
+  color: black;
+`;
+export const CartItem = styled.div`
+  height: 300px;
+  overflow-x: hidden;
+`;
+
+export const DelIcon = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: 40px;
 `;

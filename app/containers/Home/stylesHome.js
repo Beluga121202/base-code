@@ -7,7 +7,6 @@ export const BannerImg = styled.img`
 
 export const BannerDiv = styled.div`
   position: relative;
-  margin-bottom: 28px;
 `;
 
 export const BannerTitle = styled.div`
@@ -61,4 +60,14 @@ export const SubBanner = styled.img`
 `;
 export const BannerSingUp = styled.div`
   cursor: pointer;
+`;
+
+export const TrendingText = styled.div`
+  font-size: 36px;
+  font-weight: 700;
+  padding: 28px;
+`;
+export const BannerSub = styled.div`
+  position: relative;
+  margin-bottom: 28px;
 `;

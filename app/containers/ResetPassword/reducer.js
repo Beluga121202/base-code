@@ -24,6 +24,7 @@ const ReceiveEmailReducer = (state = initialState, action) =>
         break;
       case RECIEVEEMAILCHANGE_ERROR:
         draft.errorMessage = action.error;
+        draft.isLoading = false;
         // console.log(action);
         break;
       case RESETPASSWORD:

@@ -9,3 +9,9 @@ export const selectUserLogin = () =>
     selectLogin,
     state => state.userAccount,
   );
+
+export const selectCart = () =>
+  createSelector(
+    selectLogin,
+    state => state.cart,
+  );

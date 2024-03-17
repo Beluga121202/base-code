@@ -11,5 +11,12 @@ export const REDUX_KEY = {
   login: 'login',
   register: 'register',
   prdocutManagement: 'prdocutManagement',
-  menPage: 'menPage',
+  orderManagement: 'orderManagement',
+  customerManagement: 'customerManagement',
+  Page: 'Page',
+  detailProduct: 'detailProduct',
+  cart: 'cart',
+  search: 'search',
+  checkout: 'checkout',
+  resetPassword: 'resetPassword',
 };
