@@ -52,8 +52,9 @@ export const ButtonAddtoCart = styled(Button)`
 
 export const TabsCustom = styled(Tabs)`
   &.ant-tabs {
-    width: 50%;
+    width: 60%;
     margin-top: 28px;
+    margin-left: 86px;
     min-height: 500px;
   }
   .ant-tabs-tab {

@@ -13,6 +13,7 @@ import EditButton from '../../../images/edit.svg';
 import DeleteButton from '../../../images/delete.jpg';
 import TableCustom from '../../../components/Table';
 import AddandEditProductModal from './AddandEditProductModal';
+import { TextContentHeader } from '../OrderManagement/styles';
 const key = REDUX_KEY.prdocutManagement;
 
 // eslint-disable-next-line react/prop-types
@@ -47,7 +48,11 @@ const ProductManagement = ({ token, search }) => {
     setOpenEdit(false);
   };
   const handleAdd = data => {
-    const temp = { ...data, img: data.img[0].data_url };
+    const temp = {
+      ...data,
+      img: data.img[0].data_url,
+      discount: data.discount || 0,
+    };
     dispatch(
       actions.addIventory(temp, () => {
         message.success('Thêm thành công', 1, () => {
@@ -117,6 +122,7 @@ const ProductManagement = ({ token, search }) => {
       title: 'Tên Sản Phẩm',
       dataIndex: 'product_name',
       key: 'product_name',
+      width: '15%',
     },
     {
       title: 'Hình ảnh',
@@ -184,7 +190,10 @@ const ProductManagement = ({ token, search }) => {
   ];
   return (
     <>
-      <Flex justify="flex-end">
+      <Flex justify="space-between" align="center">
+        <TextContentHeader>
+          {t('Admin.TotalProduct')} {dataSource.length}
+        </TextContentHeader>
         <Button type="primary" onClick={() => setOpenAdd(true)}>
           {t('Admin.AddProduct')}
         </Button>
@@ -202,6 +211,7 @@ const ProductManagement = ({ token, search }) => {
         <AddandEditProductModal
           onClickCancel={handleCancel}
           onClickOK={handleAdd}
+          title="Thêm sản phẩm"
         />
       )}
       {openEdit && (
@@ -209,6 +219,7 @@ const ProductManagement = ({ token, search }) => {
           onClickCancel={handleCancel}
           onClickOK={handleEdit}
           productEdit={productEdit}
+          title="Sửa sản phẩm"
         />
       )}
     </>

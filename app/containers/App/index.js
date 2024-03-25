@@ -21,6 +21,7 @@ import ContainerAdmin from './layout/ContainerAdmin';
 import ProductManagement from '../Admin/ProductManagement/LoadableProductManagement';
 import OrderManagement from '../Admin/OrderManagement/LoadableOrder';
 import CustomerManagement from '../Admin/CustomerManagement/LoadableCustomer';
+import ProfitManagement from '../Admin/ProfitManagement/LoadableProfitManagement';
 import ShoesPage from '../PageShoes/LoadableMenShoes';
 import DetailProduct from '../DetailProduct/LoadableDetailProduct';
 import Cart from '../Cart/LoadableCart';
@@ -59,6 +60,12 @@ export default function App() {
             path="/admin/customer_management"
             component={CustomerManagement}
             placeholder="Tìm kiếm theo số điện thoại"
+          />
+          <ContainerAdmin
+            exact
+            path="/admin/profit_management"
+            component={ProfitManagement}
+            hidden
           />
           <ContainerHome exact path="/" component={Home} />
           <ContainerHome exact path="/register" component={Registration} />

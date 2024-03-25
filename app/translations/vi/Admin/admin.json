@@ -28,5 +28,8 @@
   "Phone": "Số điện thoại",
   "Gender": "Giới tính",
   "ThirdGender": "Không xác định",
-  "CostPrice": "Giá nhập"
+  "CostPrice": "Giá nhập",
+  "TotalProduct": "Tổng số lượng sản phẩm: ",
+  "TotalOrder": "Tổng số lượng đơn hàng: ",
+  "TotalCustomer": "Tổng số lượng khách hàng: "
 }

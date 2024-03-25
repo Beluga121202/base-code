@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { message, Popconfirm, Space } from 'antd';
 import { useDispatch } from 'react-redux';
 import moment from 'moment';
+import { useTranslation } from 'react-i18next';
 import { useInjectSaga } from '../../../utils/injectSaga';
 import reducer from './reducerCustomer';
 import * as actions from './actions';
@@ -13,6 +14,7 @@ import EditButton from '../../../images/edit.svg';
 import TableCustom from '../../../components/Table';
 import EditCustomerModal from './EditCustomerModal';
 import DeleteButton from '../../../images/delete.jpg';
+import { TextContentHeader } from '../OrderManagement/styles';
 
 const key = REDUX_KEY.customerManagement;
 
@@ -23,6 +25,7 @@ const CustomerManagement = ({ search }) => {
   const [page, setPage] = useState(1);
   const [dataSource, setDataSource] = useState([]);
   const [dataSearch, setDataSearch] = useState([]);
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [openEdit, setOpenEdit] = useState(false);
   const [customerEdit, setCustomerEdit] = useState([]);
@@ -162,6 +165,9 @@ const CustomerManagement = ({ search }) => {
   ];
   return (
     <>
+      <TextContentHeader>
+        {t('Admin.TotalCustomer')} {dataSource.length}
+      </TextContentHeader>
       <TableCustom
         columns={columns}
         data={dataSource}

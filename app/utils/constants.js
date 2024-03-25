@@ -13,6 +13,7 @@ export const REDUX_KEY = {
   prdocutManagement: 'prdocutManagement',
   orderManagement: 'orderManagement',
   customerManagement: 'customerManagement',
+  profitManagement: 'profitManagement',
   Page: 'Page',
   detailProduct: 'detailProduct',
   cart: 'cart',

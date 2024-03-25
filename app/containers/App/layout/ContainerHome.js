@@ -134,7 +134,7 @@ export default function ContainerHome({ component: Component }) {
       label: 'Quản lý',
     });
   }
-  const items = ['Info', 'Log Out'].map((name, index) => ({
+  const items = ['Log Out'].map((name, index) => ({
     key: String(index + 1),
     label: `${name}`,
   }));
@@ -152,9 +152,8 @@ export default function ContainerHome({ component: Component }) {
     }
   };
   // eslint-disable-next-line no-shadow
-  const onClick = ({ key }) => {
-    // eslint-disable-next-line no-unused-expressions
-    key === 1 ? console.log('Hehe') : dispatch(actions.LogOut());
+  const onClick = () => {
+    dispatch(actions.LogOut());
   };
   const hanleClickMenu = e => {
     if (e.key === '1') {

@@ -1,5 +1,5 @@
 {
-  "Username": "Tên đăng nhập hoặc email",
+  "Username": "Tên đăng nhập",
   "Password": "Mật khẩu",
   "Login": "Đăng nhập",
   "LoginModalText": "Để tận dụng tối đa ưu đãi đến từ thành viên, hãy nhập tài khoản và mật khẩu của bạn bên dưới.",
@@ -12,6 +12,6 @@
   "Qty": "Số lượng: ",
   "Price": "Đơn giá: ",
   "Total": "Tổng tiền: ",
-  "CheckOut": "Thanh Toán",
+  "CheckOut": "Xem chi tiết giỏ hàng",
   "Search": "Tìm kiếm"
 }

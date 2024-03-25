@@ -32,7 +32,9 @@ const EditStatusModal = ({ status, onClickCancel, onChangeStatus }) => {
         style={{
           width: 470,
         }}
-        disabled={status === 'Đơn hàng bị huỷ' && true}
+        disabled={
+          status === 'Đơn hàng bị huỷ' || status === 'Giao hàng thành công'
+        }
         onChange={handleChange}
         options={[
           {

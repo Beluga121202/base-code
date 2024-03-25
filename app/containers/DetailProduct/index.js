@@ -62,8 +62,8 @@ const DetailProduct = ({ handleAddCart }) => {
       img: detailProduct.img,
       discount: detailProduct.discount,
       quantity: value,
+      cost_price: detailProduct.cost_price,
     };
-    console.log(itemCart);
     dispatch(actions.AddToCart(itemCart));
     handleAddCart();
   };
@@ -140,13 +140,13 @@ const DetailProduct = ({ handleAddCart }) => {
                 </em>
               </strong>
               <strong>&nbsp;</strong>
-              <strong>
+              <strong style={{ fontFamily: 'sans-serif' }}>
                 Trong thời gian diễn ra chương trình khuyến mãi, thời gian giao
                 hàng có thể kéo dài hơn so với dự kiến. Rất mong Quý khách thông
                 cảm cho sự bất tiện này.
               </strong>
             </p>
-            <p>
+            <p style={{ fontFamily: 'sans-serif' }}>
               <strong>Sản phẩm áp dụng:&nbsp;</strong>Tất cả sản phẩm được giao
               dịch tại Website CONVERSE.
             </p>
@@ -172,10 +172,13 @@ const DetailProduct = ({ handleAddCart }) => {
                 của&nbsp;Converse.
               </li>
             </ul>
-            <p>
-              <strong>Thời gian đổi trả hàng:&nbsp;</strong>Đổi mẫu trong vòng 3
-              ngày, đổi size trong vòng 7 ngày và chỉ đổi 01 lần duy nhất với
-              giá trị bằng hoặc cao hơn, nếu thấp hơn sẽ không được hoàn tiền.
+            <p style={{ fontFamily: 'sans-serif' }}>
+              <strong style={{ fontFamily: 'sans-serif' }}>
+                Thời gian đổi trả hàng:&nbsp;
+              </strong>
+              Đổi mẫu trong vòng 3 ngày, đổi size trong vòng 7 ngày và chỉ đổi
+              01 lần duy nhất với giá trị bằng hoặc cao hơn, nếu thấp hơn sẽ
+              không được hoàn tiền.
             </p>
           </div>
         </>

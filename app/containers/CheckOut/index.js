@@ -56,14 +56,12 @@ const CheckOut = () => {
       order_id: randomOrder,
       cart,
     };
-    console.log(randomOrder);
     dispatch(
       actions.CheckOut(invoice, () => {
         setResult(true);
       }),
     );
   };
-  console.log(result);
   const handleOk = () => {
     setResult(false);
     setOrder('');

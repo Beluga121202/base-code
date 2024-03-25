@@ -37,9 +37,22 @@ const DetailOrderModal = ({ detailOrder, onClickCancel }) => {
       dataIndex: 'quantity',
     },
     {
-      title: 'Giá',
+      title: 'Giá Bán',
       key: 'price',
       dataIndex: 'price',
+      render: value => (
+        <span>
+          {value.toLocaleString('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+          })}
+        </span>
+      ),
+    },
+    {
+      title: 'Giá Nhập',
+      key: 'cost_price',
+      dataIndex: 'cost_price',
       render: value => (
         <span>
           {value.toLocaleString('vi-VN', {

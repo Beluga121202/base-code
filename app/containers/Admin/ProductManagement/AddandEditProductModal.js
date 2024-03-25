@@ -22,12 +22,20 @@ import {
   ImgUploadWrapper,
 } from './styles';
 // eslint-disable-next-line react/prop-types
-const AddandEditProductModal = ({ onClickOK, onClickCancel, productEdit }) => {
+const AddandEditProductModal = ({
+  onClickOK,
+  onClickCancel,
+  // eslint-disable-next-line react/prop-types
+  productEdit,
+  // eslint-disable-next-line react/prop-types
+  title,
+}) => {
   // const history = useHistory();
   const { t } = useTranslation();
   const [form] = Form.useForm();
   const [fileList, setFileList] = useState([]);
   const [images, setImages] = useState([]);
+  const [selectValue, setSelectValue] = useState('');
   const maxNumber = 1;
   const onChange = (imageList, addUpdateIndex) => {
     // data for submit
@@ -53,13 +61,17 @@ const AddandEditProductModal = ({ onClickOK, onClickCancel, productEdit }) => {
       form.setFieldsValue(productEdit);
     }
   }, [productEdit]);
+  const handleChange = value => {
+    console.log(`selected ${value}`);
+    setSelectValue(value);
+  };
   return (
     <>
       <Modal
         open
         onCancel={handleCancel}
         centered
-        title={t('Admin.AddProduct')}
+        title={title}
         getContainer={false}
         footer={null}
       >
@@ -86,6 +98,7 @@ const AddandEditProductModal = ({ onClickOK, onClickCancel, productEdit }) => {
           >
             <Select
               autoFocus
+              onChange={handleChange}
               options={[
                 {
                   label: t('Admin.Men'),
@@ -269,12 +282,18 @@ const AddandEditProductModal = ({ onClickOK, onClickCancel, productEdit }) => {
             name="discount"
             rules={[
               {
-                required: true,
+                required: selectValue === 'Sale',
                 message: 'Vui lòng nhập giảm giá!',
               },
             ]}
           >
-            <InputNumber min={0} max={100} addonAfter="%" />
+            <InputNumber
+              min={0}
+              max={100}
+              defaultValue={0}
+              addonAfter="%"
+              disabled={selectValue !== 'Sale'}
+            />
           </Form.Item>
           <Form.Item label={t('Admin.MadeIn')} name="place">
             <Input />
